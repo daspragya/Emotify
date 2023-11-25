@@ -1,3 +1,4 @@
+import os
 from keras.models import load_model
 from time import sleep
 from keras.preprocessing.image import img_to_array
@@ -6,13 +7,16 @@ import cv2 #OpenCV ---> video is a collection of frames
 import numpy as np
 from flask import Flask , render_template
 import time
+from dotenv import load_dotenv
+load_dotenv()
+emotifyPath = os.getenv("EMOTIFY_PATH")
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    face_classifier = cv2.CascadeClassifier(r'D:\PragyaComputer\Emotify\emotionDetection\haarcascade_frontalface_default.xml')
-    classifier =load_model(r'D:\PragyaComputer\Emotify\emotionDetection\model.h5')
+    face_classifier = cv2.CascadeClassifier(emotifyPath + r'\emotionDetection\haarcascade_frontalface_default.xml')
+    classifier =load_model(emotifyPath + r'\emotionDetection\model.h5')
 
     emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
 
@@ -60,11 +64,11 @@ def index():
         val = 'Calm'
 
     print(val)
-    fp = open(r"D:\PragyaComputer\Emotify\new.txt","w")
+    fp = open(emotifyPath + r"\new.txt","w")
     fp.write(val)
     fp.close()
     import os
-    os.system(r'python D:\PragyaComputer\Emotify\songRecommender\test.py')
+    os.system('python ' + emotifyPath +r'\songRecommender\test.py')
     print(max(zip(L.values(),L.keys()))[1])
     cap.release() # stop capturing frames
     cv2.destroyAllWindows()

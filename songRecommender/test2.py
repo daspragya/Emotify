@@ -1,5 +1,9 @@
-fp = open(r"D:\PragyaComputer\Emotify\new.html","w")
-f2 = open(r"D:\PragyaComputer\Emotify\new.txt","r")
+from dotenv import load_dotenv
+import os
+load_dotenv()
+emotifyPath = os.getenv("EMOTIFY_PATH")
+fp = open(emotifyPath+r"\new.html","w")
+f2 = open(emotifyPath+r"\new.txt","r")
 p=f2.read()
 f2.close()
 fp.write('''
@@ -12,7 +16,7 @@ fp.write('''
   
     <title>HTML 5 Boilerplate</title>
   </head>
-  <body background="D:\PragyaComputer\Emotify\songRecommender\data\bg.jpg">
+  <body background="'''+emotifyPath+'''\songRecommender\data\bg.jpg">
   
 	<script src="index.js"></script>
     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/'''+p+'''?utm_source=generator" width="75%" height="500" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
@@ -21,6 +25,4 @@ fp.write('''
 </html>''')
 
 fp.close()
-
-import os
-os.system(r"D:\PragyaComputer\Emotify\new.html")
+os.system(emotifyPath+r"\new.html")

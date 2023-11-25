@@ -15,11 +15,21 @@ The system adapts music recommendations from Spotify based on users’ emotions,
 - Sad
 - Surprise
 
+And provides playlists such as:
+
+- Happy
+- Sad
+- Calm
+- Energetic
+
+based on your mood
+
 ## Features
 
-- **Facial Emotion Detection**: Utilizes OpenCV and Keras for real-time emotion detection through webcam input.
-- **Integration with Spotify**: Seamlessly integrates with Spotify API to play songs based on detected emotions.
-- **Frontend**: React app with a 'Try Emotify' button that initiates the emotion detection process.
+- **Facial Emotion Detection**: Utilize OpenCV and Keras for real-time emotion detection through webcam input.
+- **Music Recommendation**: Uses KMeans for clustering and song recommendation based on detected emotions.
+- **Integration with Spotify**: Integration with Spotify API to play the recommended songs.
+- **Frontend**: React app that initiates the process.
 
 ## Folder Structure
 
